@@ -175,6 +175,36 @@ var LaserTower = function(gx,gy) {
   return lt;
 };
 
+var SuperLaserTower = function(gx,gy) {
+  var lt = Tower({gx:gx,gy:gy,color:color(90,150,50)});
+  lt.type = "Super Laser Tower";
+  lt.attack = function(creep) {
+    assign_to_depth(Laser(this,creep),SET.bullet_render_level);
+  };
+  lt.upgrade_cost = 100;
+  lt.sale_value = 50;
+  lt.upgrade = function() {
+    if (SET.gold >= this.upgrade_cost) {
+      SET.gold -= this.upgrade_cost;
+      this.sale_value = Math.floor(this.sale_value + this.upgrade_cost);
+      this.upgrade_cost = Math.floor(this.upgrade_cost * 1.5);
+      this.damage = Math.floor(this.damage * 2.2);
+      this.set_range(this.range + 0.3);
+      this.reload_rate = this.reload_rate - 10;
+
+      unselect();
+      SET.state = new TowerSelectMode();
+      SET.state.set_up(this.x_mid,this.y_mid);
+    }
+    else error("You don't have enough gold to upgrade, you need " + (this.upgrade_cost - SET.gold) + " more.");
+  }
+  lt.damage = 250;
+  lt.set_range(3.5);
+  lt.reload_rate = 300;
+  lt.account_for_terrain();
+  return lt;
+};
+
 var CannonTower = function(gx,gy) {
   var lt = Tower({gx:gx,gy:gy,color:color(100,120,140)});
   lt.type = "Cannon Tower";
