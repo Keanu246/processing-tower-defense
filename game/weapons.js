@@ -181,8 +181,8 @@ var SuperLaserTower = function(gx,gy) {
   lt.attack = function(creep) {
     assign_to_depth(Laser(this,creep),SET.bullet_render_level);
   };
-  lt.upgrade_cost = 100;
-  lt.sale_value = 50;
+  lt.upgrade_cost = 250;
+  lt.sale_value = 125;
   lt.upgrade = function() {
     if (SET.gold >= this.upgrade_cost) {
       SET.gold -= this.upgrade_cost;
