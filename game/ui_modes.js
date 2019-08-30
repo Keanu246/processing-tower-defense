@@ -187,8 +187,17 @@ var BuildLaserTowerMode = function() {
 };
 BuildLaserTowerMode.prototype = new BuildTowerMode();
 
-var build_laser_tower = function() {
-  attempt_to_enter_ui_mode(new BuildLaserTowerMode());
+var BuildSuperLaserTowerMode = function() {
+  this.cost = 250;
+  this.tower = SuperLaserTower;
+  this.name = function() {
+    return "BuildSuperLaserTowerMode";
+ };
+};
+BuildSuperLaserTowerMode.prototype = new BuildTowerMode();
+
+var build_super_laser_tower = function() {
+  attempt_to_enter_ui_mode(new BuildSuperLaserTowerMode());
 };
 
 var BuildGatlingTowerMode = function() {
