@@ -430,11 +430,11 @@ var Laser = function(tower,target) {
 var SuperLaser = function(tower,target) {
   var l = new Object();
   Object.extend(l, Weapon(tower,target));
-  l.tail = 20; // length of laser's graphic
-  l.color = color(0,255,0);
-  l.speed = 10;
-  l.proximity = 10;
-  l.draw = function() {
+  sl.tail = 20; // length of laser's graphic
+  sl.color = color(0,255,0);
+  sl.speed = 10;
+  sl.proximity = 10;
+  sl.draw = function() {
     var path = calc_path(l.x,l.y,tower.x_mid,tower.y_mid,l.tail);
     stroke(l.color);
     line(l.x,l.y,l.x+pat
