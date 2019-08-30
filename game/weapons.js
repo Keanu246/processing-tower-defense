@@ -176,7 +176,7 @@ var LaserTower = function(gx,gy) {
 };
 
 var SuperLaserTower = function(gx,gy) {
-  var lt = Tower({gx:gx,gy:gy,color:color(90,150,50)});
+  var lt = Tower({gx:gx,gy:gy,color:color(120,180,80)});
   lt.type = "Super Laser Tower";
   lt.attack = function(creep) {
     assign_to_depth(Laser(this,creep),SET.bullet_render_level);
@@ -426,3 +426,15 @@ var Laser = function(tower,target) {
   }
   return l;
 };
+
+var SuperLaser = function(tower,target) {
+  var l = new Object();
+  Object.extend(l, Weapon(tower,target));
+  l.tail = 20; // length of laser's graphic
+  l.color = color(0,255,0);
+  l.speed = 10;
+  l.proximity = 10;
+  l.draw = function() {
+    var path = calc_path(l.x,l.y,tower.x_mid,tower.y_mid,l.tail);
+    stroke(l.color);
+    line(l.x,l.y,l.x+pat
